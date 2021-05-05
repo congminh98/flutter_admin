@@ -1,3 +1,4 @@
+import 'package:admin/responsive.dart';
 import 'package:admin/screens/dashboard/components/header.dart';
 import 'package:admin/screens/dashboard/components/my_file.dart';
 import 'package:admin/screens/dashboard/components/recent_file.dart';
@@ -25,14 +26,19 @@ class DashboardScreen extends StatelessWidget {
                       MyFiles(),
                       SizedBox(height: defaultPadding),
                       RecentFiles(),
+                      if (Responsive.isMobile(context))
+                        SizedBox(height: defaultPadding),
+                      if (Responsive.isMobile(context)) StorageDetail(),
                     ],
                   ),
                 ),
-                SizedBox(width: defaultPadding),
-                Expanded(
-                  flex: 2,
-                  child: StorageDetail(),
-                ),
+                if (!Responsive.isMobile(context))
+                  SizedBox(width: defaultPadding),
+                if (!Responsive.isMobile(context))
+                  Expanded(
+                    flex: 2,
+                    child: StorageDetail(),
+                  ),
               ],
             )
           ],
